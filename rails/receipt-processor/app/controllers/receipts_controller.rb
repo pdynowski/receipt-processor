@@ -6,8 +6,13 @@ class ReceiptsController < ApplicationController
   # but "process" is already a method on the base controller, so needed to use
   # a different name for the method
   def process_receipt
-    receipt_uuid = Receipt.create(permitted_params.to_h)
+    receipt_uuid = Receipt.create(permitted_params.to_h).uuid
     render :json => { id: receipt_uuid }
+  end
+
+  def points
+    Receipt.get_points(params[:id])
+    render :json => { points: 12 }
   end
 
 

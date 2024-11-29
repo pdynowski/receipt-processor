@@ -17,10 +17,10 @@ RSpec.describe Receipt do
                       }
 
     let(:uuid)        { "43a1d83f-9df9-49e6-bb23-cab35be4786f" }
-    let(:receipt)     { Receipt.new(receipt_info) }
+    let(:receipt)     { Receipt.new(nil, receipt_info) }
 
     it 'returns a uuid for the stored receipt' do
-      expect(Receipt.create(receipt_info)).to match /^[A-Fa-f0-9]{8}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{12}$/
+      expect(Receipt.create(receipt_info).uuid).to match /^[A-Fa-f0-9]{8}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{4}-[A-Fa-f0-9]{12}$/
     end
 
     it 'stores the receipt information' do
