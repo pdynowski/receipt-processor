@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   root "receipts#index"
 
   post "receipts/process", to: "receipts#process_receipt"
+  get "receipts/:id/points", to: "receipts#points"
+
 end

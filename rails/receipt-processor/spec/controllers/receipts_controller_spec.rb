@@ -42,4 +42,50 @@ RSpec.describe ReceiptsController, type: :controller do
       end
     end
   end
+
+  describe 'GET #:id/points' do
+
+    let(:receipt_info)  {
+                          {
+                            "retailer": "Target",
+                            "purchaseDate": "2022-01-01",
+                            "purchaseTime": "13:01",
+                            "items": [
+                              {
+                                "shortDescription": "Mountain Dew 12PK",
+                                "price": "6.49"
+                              },{
+                                "shortDescription": "Emils Cheese Pizza",
+                                "price": "12.25"
+                              },{
+                                "shortDescription": "Knorr Creamy Chicken",
+                                "price": "1.26"
+                              },{
+                                "shortDescription": "Doritos Nacho Cheese",
+                                "price": "3.35"
+                              },{
+                                "shortDescription": "   Klarbrunn 12-PK 12 FL OZ  ",
+                                "price": "12.00"
+                              }
+                            ],
+                            "total": "35.35"
+                          }
+                        }
+
+    it 'endpoint exists' do
+      expect{ get :points, params: {id: '12345678-1234-1234-1234-123456789012'} }.not_to raise_error
+    end
+
+    it 'returns the correct points value when given a valid uuid' do
+      receipt = Receipt.create(receipt_info)
+      get :points, params: { id: receipt.uuid }
+      expect(JSON.parse(response.body)).to eq({ 'points' => 28 })
+    end
+
+    it 'returns an error message when given an invalid uuid' do
+      get :points, params: { id: '12345678-1234-1234-1234-123456789012' }
+      expect(response.status).to eq 404
+      expect(JSON.parse(response.body)).to eq({ 'error' => 'ReceiptNotFoundError: Could not find a receipt with the uuid: 12345678-1234-1234-1234-123456789012' })
+    end
+  end
 end

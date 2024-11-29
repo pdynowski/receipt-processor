@@ -7,12 +7,16 @@ class ReceiptsController < ApplicationController
   # a different name for the method
   def process_receipt
     receipt_uuid = Receipt.create(permitted_params.to_h).uuid
-    render :json => { id: receipt_uuid }
+    render :json => { id: receipt_uuid }, status: :created
   end
 
   def points
-    Receipt.get_points(params[:id])
-    render :json => { points: 12 }
+    begin
+      points = Receipt.get_points(params[:id])
+    rescue ReceiptNotFoundError => error
+      render json: { error: error }, status: :not_found and return
+    end
+    render :json => { points: points }
   end
 
 

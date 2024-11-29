@@ -30,4 +30,46 @@ RSpec.describe Receipt do
       expect(REDIS.get(uuid)).to eq receipt_info.to_json
     end
   end
+
+
+  describe '.get_points' do
+
+    let(:receipt_info)  {
+                          {
+                            "retailer": "Target",
+                            "purchaseDate": "2022-01-01",
+                            "purchaseTime": "13:01",
+                            "items": [
+                              {
+                                "shortDescription": "Mountain Dew 12PK",
+                                "price": "6.49"
+                              },{
+                                "shortDescription": "Emils Cheese Pizza",
+                                "price": "12.25"
+                              },{
+                                "shortDescription": "Knorr Creamy Chicken",
+                                "price": "1.26"
+                              },{
+                                "shortDescription": "Doritos Nacho Cheese",
+                                "price": "3.35"
+                              },{
+                                "shortDescription": "   Klarbrunn 12-PK 12 FL OZ  ",
+                                "price": "12.00"
+                              }
+                            ],
+                            "total": "35.35"
+                          }
+                         }
+
+    let(:bad_uuid) { '43a1d83f-9df9-49e6-bb23-cab35be4786e' }
+
+    it 'returns the correct number of points for a receipt given a valid uuid' do
+      receipt = Receipt.create(receipt_info)
+      expect(Receipt.get_points(receipt.uuid)).to eq 28
+    end
+
+    it 'returns an error given an invalid uuid' do
+      expect{ Receipt.get_points(bad_uuid) }.to raise_error(ReceiptNotFoundError)
+    end
+  end
 end
