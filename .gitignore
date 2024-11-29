@@ -5,29 +5,29 @@
 # `$XDG_CONFIG_HOME/git/ignore` or `~/.config/git/ignore`
 
 # Ignore bundler config.
-rails/recepit-processor/.bundle
+rails/receipt-processor/.bundle
 
 # Ignore all environment files (except templates).
-rails/recepit-processor/.env*
-!rails/recepit-processor/.env*.erb
+rails/receipt-processor/.env*
+!rails/receipt-processor/.env*.erb
 
 # Ignore all logfiles and tempfiles.
-rails/recepit-processor/log/*
-rails/recepit-processor/tmp/*
-!rails/recepit-processor/log/.keep
-!rails/recepit-processor/tmp/.keep
+rails/receipt-processor/log/*
+rails/receipt-processor/tmp/*
+!rails/receipt-processor/log/.keep
+!rails/receipt-processor/tmp/.keep
 
 # Ignore pidfiles, but keep the directory.
-rails/recepit-processor/tmp/pids/*
-!rails/recepit-processor/tmp/pids/
-!rails/recepit-processor/tmp/pids/.keep
+rails/receipt-processor/tmp/pids/*
+!rails/receipt-processor/tmp/pids/
+!rails/receipt-processor/tmp/pids/.keep
 
 # Ignore storage (uploaded files in development and any SQLite databases).
-rails/recepit-processor/storage/*
-!rails/recepit-processor/storage/.keep
-rails/recepit-processor/tmp/storage/*
-!rails/recepit-processor/tmp/storage/
-!rails/recepit-processor/tmp/storage/.keep
+rails/receipt-processor/storage/*
+!rails/receipt-processor/storage/.keep
+rails/receipt-processor/tmp/storage/*
+!rails/receipt-processor/tmp/storage/
+!rails/receipt-processor/tmp/storage/.keep
 
 # Ignore master key for decrypting credentials and more.
-rails/recepit-processor/config/master.key
+rails/receipt-processor/config/master.key
