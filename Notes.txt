@@ -1,0 +1,10 @@
+Some notes on development:
+
+1. Why two apps?
+- Ruby and Rails are the language and framework I'm used to working in, so I wanted to do the exercise in that to show how I work in a framework that I'm familiar with.
+- I've never touched Go before, but it's what is generally used at Fetch, so I wanted to start picking it up and show that I can work in it/be productive in it quickly.
+
+2. Why Redis for the Rails app?
+- It's not Ruby/Railslike to have global variables (there's no easy analogue to the receipts array from the Go app), so things have to be persisted somewhere
+- Redis is pretty lightweight, and doesn't create an enormous container/require a lot of setup
+- I wanted to show off my Docker skills a little
